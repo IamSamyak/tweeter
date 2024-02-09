@@ -37,7 +37,7 @@ const Profile = () => {
     useEffect(() => {
         dispatch(findUserById(id));
         dispatch(getUserTweets(id));
-    }, [id,auth.findUser?.req_user])
+    }, [id,auth.findUser?.req_user,auth.user])
 
     return (
         <div>

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { navigationMenu } from './NavigationMenu'
 
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Menu, MenuItem } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../Store/Auth/Action';
+import { findUserById, logout } from '../../Store/Auth/Action';
 
 const Navigation = () => {
     const { auth } = useSelector((store) => store);
@@ -24,6 +24,12 @@ const Navigation = () => {
         handleClose();
         dispatch(logout());
     }
+    
+    useEffect(() => {
+        // This function will be called whenever auth.user.image changes
+        // You can perform any side effects here
+        console.log("auth.user.fullName changed:", auth.user?.fullName);
+    }, [auth.user?.fullName]); 
     const navigate = useNavigate();
     return (
         <div className="h-screen sticky top-0">

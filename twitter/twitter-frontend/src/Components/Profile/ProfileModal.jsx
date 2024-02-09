@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import { useFormik } from 'formik';
 import CloseIcon from '@mui/icons-material/Close';
 import { Avatar, IconButton, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile } from '../../Store/Auth/Action';
 import { uploadToCloudnary } from '../../Utils/uploadToCloudnary';
@@ -39,15 +39,15 @@ export default function ProfileModal({ open, handleClose }) {
 
     const formik = useFormik({
         initialValues: {
-            fullName: auth.user?.fullName,
-            website: auth.user?.website,
-            location: auth.user?.location,
-            bio: auth.user?.bio,
-            backgroundImage: auth.user?.backgroundImage,
-            image: auth.user?.image
+            fullName: auth.findUser?.fullName,
+            website: auth.findUser?.website,
+            location: auth.findUser?.location,
+            bio: auth.findUser?.bio,
+            backgroundImage: auth.findUser?.backgroundImage,
+            image: auth.findUser?.image
         },
         onSubmit: handlSubmit
-    })
+    }) 
 
     const handleImageChange = async (event) => {
         setUploading(true);
